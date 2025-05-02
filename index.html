@@ -110,16 +110,21 @@
   </section>
 
   <section id="contacto" class="contacto">
-    <h2>Contacto por RadioBanda</h2>
-    <form id="formulario" action="https://formspree.io/f/xdkgeorl" method="POST">
-      <label for="nombre">Tu apodo:</label><br>
-      <input type="text" id="nombre" name="nombre" required><br>
-      <label for="mensaje">Mensaje:</label><br>
-      <textarea id="mensaje" name="mensaje" rows="4" cols="30" required></textarea><br>
-      <button type="submit">Mandar mensaje</button>
-    </form>
-    <p id="confirmacion">📡 ¡Mensaje enviado! .</p>
-  </section>
+  <h2>Contacto por RadioBanda</h2>
+  <p>📞 <strong>Teléfono:</strong> (81) 8354 7788</p>
+  <p>📍 <strong>Dirección:</strong> Calle Hidalgo #117, Col. Los Fresnos, Apodaca, Nuevo León, C.P. 66600</p>
+  <p>📠 <strong>Fax:</strong> (81) 8354 7799</p>
+  <p>🛰️ También puedes contactarnos vía formulario:</p>
+  
+  <form id="formulario" action="https://formspree.io/f/xdkgeorl" method="POST">
+    <label for="nombre">Tu apodo:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br>
+    <label for="mensaje">Mensaje:</label><br>
+    <textarea id="mensaje" name="mensaje" rows="4" cols="30" required></textarea><br>
+    <button type="submit">Mandar mensaje</button>
+  </form>
+  <p id="confirmacion">📡 ¡Mensaje enviado!</p>
+</section>
 
   <script>
     const form = document.getElementById('formulario');
