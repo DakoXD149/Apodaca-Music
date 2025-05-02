@@ -42,11 +42,13 @@
       text-align: center;
       margin-top: 30px;
     }
-    footer {
+    .reproductor {
       text-align: center;
-      color: orange;
-      font-size: 0.9em;
-      margin-top: 40px;
+      margin-top: 20px;
+    }
+    audio {
+      width: 80%;
+      max-width: 400px;
     }
   </style>
 </head>
@@ -56,11 +58,19 @@
   <h2>Los Herederos de San Luis</h2>
   <img src="https://github.com/DakoXD149/Apodaca-Music/blob/main/HERE.JPG?raw=true" alt="Portada del Álbum">
 
+  <div class="reproductor">
+    <h3>Reproductor (demo)</h3>
+    <audio controls>
+      <source src="LosHerederos.mp3" type="audio/mpeg">
+      Tu navegador no soporta el reproductor de audio.
+    </audio>
+  </div>
+
   <div class="info">
     <p><strong>Año:</strong> 1999</p>
     <p><strong>Duración:</strong> 58:49 minutos</p>
     <p><strong>Género:</strong> Corrido, Regional Mexicano</p>
-    <p><strong>Precio:</strong> $180 MXN</p>
+    <p><strong>Precio:</strong> $120 MXN</p>
 
     <h3>Lado A</h3>
     <ul>
@@ -82,14 +92,14 @@
       <li>Jefe de Jefes</li>
       <li>Dos Botellas de Mezcal</li>
     </ul>
-  </div>
 
-  <footer>
-    <p>Apodaca Music © 1999</p>
-    <p>Grabado en una sola toma en los Estudios García Music</p>
-    <p>Distribuido por Apodaca Music S.A. de C.V.</p>
-    <p><em>Prohibida su reproducción sin autorización.</em></p>
-  </footer>
+    <p style="margin-top:20px; font-size: 0.9em;">
+      Apodaca Music © 1999<br>
+      Grabado en una sola toma en los Estudios García Music<br>
+      Distribuido por Apodaca Music S.A. de C.V.<br>
+      Prohibida su reproducción sin autorización.
+    </p>
+  </div>
 
   <a href="index.html">⬅️ Regresar al Catálogo</a>
 
