@@ -122,59 +122,79 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Google_Pay_Acceptance_Mark.svg/640px-Google_Pay_Acceptance_Mark.svg.png" alt="Google Pay">
   </div>
 
-  <form class="formulario" action="https://formspree.io/f/xdkgeorl" method="POST" onsubmit="return enviarDatos(event)">
-    <label for="nombre">Nombre completo:</label>
-    <input type="text" name="nombre" id="nombre" placeholder="Tu nombre completo" required>
+ <form class="formulario" id="checkout-form">
+  <label for="nombre">Nombre completo:</label>
+  <input type="text" name="nombre" id="nombre" placeholder="Tu nombre completo" required>
 
-    <label for="email">Correo electrónico:</label>
-    <input type="email" name="email" id="email" placeholder="tu@correo.com" required>
+  <label for="email">Correo electrónico:</label>
+  <input type="email" name="email" id="email" placeholder="tu@correo.com" required>
 
-    <label for="direccion">Dirección de envío:</label>
-    <input type="text" name="direccion" id="direccion" placeholder="Calle, número, colonia, ciudad" required>
+  <label for="direccion">Dirección de envío:</label>
+  <input type="text" name="direccion" id="direccion" placeholder="Calle, número, colonia, ciudad" required>
 
-    <input type="hidden" name="detalle" id="detalle">
+  <input type="hidden" name="detalle" id="detalle">
 
-    <button type="submit">Finalizar Compra</button>
-  </form>
+  <button type="submit">Finalizar Compra</button>
+</form>
 
-  <p id="mensaje" style="margin-top:20px; font-weight: bold; font-size:1em;"></p>
+<p id="mensaje" style="margin-top:20px; font-weight: bold; font-size:1em;"></p>
 
-  <script>
-    const carrito = JSON.parse(localStorage.getItem('carritoApodaca')) || [];
-    let total = 0;
-    const lista = document.getElementById('lista-checkout');
-    const detalle = [];
+<script>
+  const carrito = JSON.parse(localStorage.getItem('carritoApodaca')) || [];
+  let total = 0;
+  const lista = document.getElementById('lista-checkout');
+  const detalle = [];
 
-    carrito.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.producto} – $${item.precio} MXN`;
-      lista.appendChild(li);
-      total += item.precio;
-      detalle.push(`${item.producto} – $${item.precio} MXN`);
-    });
+  carrito.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.producto} – $${item.precio} MXN`;
+    lista.appendChild(li);
+    total += item.precio;
+    detalle.push(`${item.producto} – $${item.precio} MXN`);
+  });
 
-    document.getElementById('total-checkout').textContent = total;
+  document.getElementById('total-checkout').textContent = total;
 
-    function enviarDatos(event) {
-      const email = document.getElementById('email').value.trim();
-      const dir = document.getElementById('direccion').value.trim();
-      const nombre = document.getElementById('nombre').value.trim();
-      if (!email || !dir || !nombre) {
-        alert('Por favor, completa todos los campos antes de enviar.');
-        event.preventDefault();
-        return false;
-      }
+  document.getElementById('checkout-form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-      const resumen = detalle.join('\n') + `\nTotal: $${total} MXN`;
-      document.getElementById('detalle').value = resumen;
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const dir = document.getElementById('direccion').value.trim();
+    const resumen = detalle.join('\n') + `\nTotal: $${total} MXN`;
 
-      document.getElementById('mensaje').textContent =
-        `✅ Su compra ha sido confirmada con éxito. Gracias, ${nombre}. Pronto le enviaremos la información de envío a ${email}.`;
-
-      localStorage.removeItem('carritoApodaca');
-      return true;
+    if (!nombre || !email || !dir) {
+      alert('Por favor, completa todos los campos antes de enviar.');
+      return;
     }
-  </script>
 
-</body>
-</html>
+    const formData = new FormData();
+    formData.append("nombre", nombre);
+    formData.append("email", email);
+    formData.append("direccion", dir);
+    formData.append("detalle", resumen);
+
+    fetch("https://formspree.io/f/xdkgeorl", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('mensaje').textContent = 
+          `✅ Su compra ha sido confirmada con éxito. Gracias, ${nombre}. Pronto le enviaremos la información de envío a ${email}.`;
+        localStorage.removeItem('carritoApodaca');
+        document.getElementById('checkout-form').reset();
+      } else {
+        document.getElementById('mensaje').textContent = "❌ Hubo un error al enviar el formulario. Inténtalo de nuevo.";
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById('mensaje').textContent = "❌ Error al enviar. Inténtalo más tarde.";
+    });
+  });
+</script>
+
