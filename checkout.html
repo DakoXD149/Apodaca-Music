@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout Apodaca Music</title>
+  <style>
+    body {
+      background-color: black;
+      color: yellow;
+      font-family: "Courier New", monospace;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      text-shadow: 2px 2px red;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background-color: darkred;
+      margin: 5px;
+      padding: 10px;
+      border: 1px solid yellow;
+    }
+    .logos img {
+      width: 60px;
+      margin: 10px;
+      border: 1px solid yellow;
+      padding: 5px;
+      background-color: white;
+    }
+    button {
+      background-color: lime;
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧾 Checkout Apodaca Music</h1>
+
+  <h3>Productos en tu carrito:</h3>
+  <ul id="lista-checkout"></ul>
+  <p><strong>Total: $<span id="total-checkout">0</span> MXN</strong></p>
+
+  <div class="logos">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay">
+  </div>
+
+  <button onclick="confirmarCompra()">Finalizar Compra</button>
+
+  <p id="mensaje" style="margin-top:20px; font-weight: bold;"></p>
+
+  <script>
+    const carrito = JSON.parse(localStorage.getItem('carritoApodaca')) || [];
+    let total = 0;
+    const lista = document.getElementById('lista-checkout');
+
+    carrito.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.producto} – $${item.precio} MXN`;
+      lista.appendChild(li);
+      total += item.precio;
+    });
+
+    document.getElementById('total-checkout').textContent = total;
+
+    function confirmarCompra() {
+      document.getElementById('mensaje').textContent = '✅ Compra confirmada. Tus cassettes llegarán por burro expreso.';
+      localStorage.removeItem('carritoApodaca');
+    }
+  </script>
+
+</body>
+</html>
