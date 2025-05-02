@@ -11,35 +11,57 @@
       font-family: "Courier New", monospace;
       padding: 20px;
     }
+
     h1 {
       text-align: center;
       text-shadow: 2px 2px red;
     }
+
+    .contenedor-productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
     .producto {
       background-color: darkred;
       border: 2px solid yellow;
       padding: 15px;
-      margin: 10px;
-      max-width: 300px;
+      width: 250px;
+      text-align: center;
     }
+
     .producto img {
       width: 100%;
       border: 2px solid yellow;
     }
+
     .carrito {
       background-color: #222;
       border: 2px solid lime;
       padding: 10px;
-      margin-top: 20px;
+      margin-top: 30px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
     button {
       background-color: yellow;
       color: black;
       font-weight: bold;
       border: none;
-      padding: 5px 10px;
+      padding: 8px 12px;
       cursor: pointer;
       margin-top: 10px;
+    }
+
+    @media screen and (max-width: 500px) {
+      .producto {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -47,32 +69,34 @@
 
   <h1>Tienda Oficial Apodaca Music</h1>
 
-  <div class="producto">
-    <img src="https://github.com/DakoXD149/Apodaca-Music/blob/main/SG25.jpg?raw=true" alt="Cinta Said García">
-    <p><strong>Said García – Los Mejores Éxitos</strong></p>
-    <p>$120 MXN</p>
-    <button onclick="agregarAlCarrito('Cinta Said García', 120)">Agregar al carrito</button>
-  </div>
+  <div class="contenedor-productos">
+    <div class="producto">
+      <img src="https://github.com/DakoXD149/Apodaca-Music/blob/main/SG25.jpg?raw=true" alt="Cinta Said García">
+      <p><strong>Said García – Los Mejores Éxitos</strong></p>
+      <p>$120 MXN</p>
+      <button onclick="agregarAlCarrito('Cinta Said García', 120)">Agregar al carrito</button>
+    </div>
 
-  <div class="producto">
-  <img src="https://github.com/DakoXD149/Apodaca-Music/blob/main/HERE.JPG?raw=true" alt="Cassette Los Herederos de San Luis - Narcocorridos Vol. 1">
-  <p><strong>Los Herederos de San Luis – Narcocorridos Vol. 1</strong></p>
-  <p>$130 MXN</p>
-  <button onclick="agregarAlCarrito('Los Herederos de San Luis – Narcocorridos Vol. 1', 130)">Agregar al carrito</button>
-</div>
+    <div class="producto">
+      <img src="https://github.com/DakoXD149/Apodaca-Music/blob/main/HERE.JPG?raw=true" alt="Cassette Los Herederos de San Luis - Narcocorridos Vol. 1">
+      <p><strong>Los Herederos de San Luis – Narcocorridos Vol. 1</strong></p>
+      <p>$130 MXN</p>
+      <button onclick="agregarAlCarrito('Los Herederos de San Luis – Narcocorridos Vol. 1', 130)">Agregar al carrito</button>
+    </div>
 
-  <div class="producto">
-    <img src="https://via.placeholder.com/300x300.png?text=Camiseta+Hecho+en+NL" alt="Camiseta">
-    <p><strong>Camiseta “Hecho en Nuevo León”</strong></p>
-    <p>$250 MXN</p>
-    <button onclick="agregarAlCarrito('Camiseta Hecho en Nuevo León', 250)">Agregar al carrito</button>
-  </div>
+    <div class="producto">
+      <img src="https://via.placeholder.com/300x300.png?text=Camiseta+Hecho+en+NL" alt="Camiseta">
+      <p><strong>Camiseta “Hecho en Nuevo León”</strong></p>
+      <p>$250 MXN</p>
+      <button onclick="agregarAlCarrito('Camiseta Hecho en Nuevo León', 250)">Agregar al carrito</button>
+    </div>
 
-  <div class="producto">
-    <img src="https://via.placeholder.com/300x300.png?text=Termo+30oz" alt="Termo">
-    <p><strong>Termo 30oz “This Is The North”</strong></p>
-    <p>$180 MXN</p>
-    <button onclick="agregarAlCarrito('Termo 30oz', 180)">Agregar al carrito</button>
+    <div class="producto">
+      <img src="https://via.placeholder.com/300x300.png?text=Termo+30oz" alt="Termo">
+      <p><strong>Termo 30oz “This Is The North”</strong></p>
+      <p>$180 MXN</p>
+      <button onclick="agregarAlCarrito('Termo 30oz', 180)">Agregar al carrito</button>
+    </div>
   </div>
 
   <div class="carrito">
