@@ -47,8 +47,27 @@
       margin-top: 20px;
     }
     audio {
-      width: 80%;
-      max-width: 400px;
+      width: 100%;
+      max-width: 350px;
+      background-color: #222;
+      border: 2px solid #f1c40f;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+      outline: none;
+    }
+    audio::-webkit-media-controls-panel {
+      background: #444;
+      border-radius: 8px;
+      border: 1px solid #f1c40f;
+    }
+    audio::-webkit-media-controls-play-button {
+      background-color: #f1c40f;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    }
+    audio::-webkit-media-controls-volume-slider {
+      background-color: #f1c40f;
     }
   </style>
 </head>
