@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Compatibilidad móvil -->
+  <title>Apodaca Music</title>
+  <style>
+    body {
+      background-color: black;
+      color: yellow;
+      font-family: "Courier New", monospace;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+    }
+    h1, h2, h3 {
+      text-align: center;
+      text-shadow: 2px 2px red;
+    }
+    nav {
+      text-align: center;
+      background-color: darkred;
+      padding: 10px;
+    }
+    nav a {
+      color: yellow;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .banner {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .banner img {
+      width: 300px;
+    }
+    .catalogo, .artistas, .historia, .tienda, .contacto {
+      padding: 20px;
+    }
+    .cassette {
+      background-color: darkred;
+      margin: 10px;
+      padding: 10px;
+      border: 2px solid yellow;
+    }
+    #confirmacion {
+      display: none;
+      color: lime;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h1>¡BIENVENIDOS A APODACA MUSIC!</h1>
+    <img src="https://i.gifer.com/9YyR.gif" alt="Banner Fuego">
+  </div>
+
+  <nav>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#artistas">Artistas</a>
+    <a href="#historia">Historia</a>
+    <a href="#tienda">Tienda</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="catalogo" class="catalogo">
+    <h2>Catálogo de Cintas</h2>
+    <div class="cassette">Los Herederos de San Luis – Narco Corridos Vol. 1</div>
+    <div class="cassette">Said García – Los Mejores Éxitos</div>
+    <div class="cassette">El Gallo de Tamaulipas – Mi Tampico Querido</div>
+    <div class="cassette">Beto Estrada – En Vivo desde Monterrey</div>
+  </section>
+
+  <section id="artistas" class="artistas">
+    <h2>Artistas</h2>
+    <p><strong>Said García:</strong> El lobo de los corridos directo del Barrio Bravo.</p>
+    <p><strong>Los Herederos de San Luis:</strong> Con sombrero, lealtad y calibre. De San Luis Potosi para el mundo.</p>
+    <p><strong>DJ Apache y La Base 13:</strong> Remixes ilegales de los 90s en cintas recicladas.</p>
+  </section>
+
+  <section id="historia" class="historia">
+    <h2>Nuestra Historia</h2>
+    <p>Fundada en 1987 por Don Ramiro “El Zorro” Zapata, esta disquera nació entre carne y cassettes en el barrio de Apodaca. Desde entonces, grabamos sin censura los corridos que nadie se atrevía a tocar. Hoy somos culto, somos leyenda, y somos resistencia musical.</p>
+    <p><em>"No somos moda, somos historia grabada en cinta."</em></p>
+  </section>
+
+  <section id="tienda" class="tienda">
+    <h2>Nuestra Tienda</h2>
+    <ul>
+      <li>Cassettes originales</li>
+      <li>Camisetas retro</li>
+      <li>Stickers “Hecho en Apodaca”</li>
+    </ul>
+    <p><strong>Pedidos vía OXXO, carta firmada o mensaje en Nextel</strong></p>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <h2>Contacto por Radiobanda</h2>
+    <form id="formulario" action="https://formspree.io/f/xdkgeorl" method="POST">
+      <label for="nombre">Tu apodo:</label><br>
+      <input type="text" id="nombre" name="nombre" required><br>
+      <label for="mensaje">Mensaje:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="4" cols="30" required></textarea><br>
+      <button type="submit">Mandar señal</button>
+    </form>
+    <p id="confirmacion">📡 ¡Señal enviada! Te respondemos por la frecuencia del barrio.</p>
+  </section>
+
+  <script>
+    const form = document.getElementById('formulario');
+    const confirmacion = document.getElementById('confirmacion');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const datos = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: datos,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset();
+        confirmacion.style.display = 'block';
+      } else {
+        alert('Hubo un problema al mandar tu señal. Intenta de nuevo.');
+      }
+    });
+  </script>
+</body>
+</html>
