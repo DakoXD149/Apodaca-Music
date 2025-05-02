@@ -1,7 +1,8 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout Apodaca Music</title>
   <style>
     body {
@@ -13,21 +14,31 @@
     }
     h1 {
       text-shadow: 2px 2px red;
+      font-size: 1.8em;
     }
     ul {
       list-style: none;
       padding: 0;
+      margin: 10px 0;
     }
     li {
       background-color: darkred;
-      margin: 5px;
+      margin: 5px auto;
       padding: 10px;
       border: 1px solid yellow;
+      max-width: 90%;
+      box-sizing: border-box;
+    }
+    .logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
     }
     .logos img {
-      width: 100px;
-      height: 40px;  /* Ajustamos el alto para hacerlo más alargado */
-      margin: 10px;
+      width: 80px;
+      height: auto;
+      margin: 5px 10px;
       background-color: transparent;
     }
     .formulario {
@@ -36,11 +47,14 @@
       padding: 15px;
       margin: 20px auto;
       max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
       text-align: left;
     }
     .formulario label {
       display: block;
       margin: 10px 0 5px;
+      font-size: 0.9em;
     }
     .formulario input {
       width: 100%;
@@ -49,15 +63,44 @@
       background-color: #333;
       color: yellow;
       font-family: inherit;
+      box-sizing: border-box;
+      font-size: 1em;
     }
     button {
       background-color: lime;
       color: black;
       font-weight: bold;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 20px;
       margin-top: 20px;
       cursor: pointer;
+      font-size: 1em;
+    }
+    p {
+      margin: 5px 0;
+      font-size: 1em;
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+      .logos img {
+        width: 60px;
+        margin: 5px;
+      }
+      .formulario {
+        padding: 10px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+      }
+      li {
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
@@ -86,7 +129,7 @@
 
   <button onclick="confirmarCompra()">Finalizar Compra</button>
 
-  <p id="mensaje" style="margin-top:20px; font-weight: bold;"></p>
+  <p id="mensaje" style="margin-top:20px; font-weight: bold; font-size:1em;"></p>
 
   <script>
     const carrito = JSON.parse(localStorage.getItem('carritoApodaca')) || [];
