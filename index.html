@@ -9,7 +9,7 @@
       background-color: black;
       color: yellow;
       font-family: "Courier New", monospace;
-      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      background-image: url('https://www.transparenttextures.com/patterns/fabric-1-dark.png');
     }
     h1, h2, h3 {
       text-align: center;
@@ -82,7 +82,7 @@
 
   <section id="historia" class="historia">
     <h2>Nuestra Historia</h2>
-    <p>Fundada en 1987 por Don Ramiro “El Zorro” Zapata, esta disquera nació entre carne y cassettes en el barrio de Apodaca. Desde entonces, grabamos sin censura los corridos que nadie se atrevía a tocar. Hoy somos culto, somos leyenda, y somos resistencia musical.</p>
+    <p>Fundada en 1987 por Don Ramiro “El Zorro” Zapata, esta disquera nació en el municipio de Apodaca, Nuevo León. Desde entonces, grabamos sin censura los corridos que nadie se atrevía a tocar. Hoy somos culto, somos leyenda, y somos resistencia musical.</p>
     <p><em>"No somos moda, somos historia grabada en cinta."</em></p>
   </section>
 
@@ -90,22 +90,23 @@
     <h2>Nuestra Tienda</h2>
     <ul>
       <li>Cassettes originales</li>
-      <li>Camisetas retro</li>
+      <li>Camiseta “Hecho en Nuevo Leon”</li>
       <li>Stickers “Hecho en Apodaca”</li>
+      <li>Termo 30oz “This Is The North”</li>
     </ul>
     <p><strong>Pedidos vía OXXO, carta firmada o mensaje en Nextel</strong></p>
   </section>
 
   <section id="contacto" class="contacto">
-    <h2>Contacto por Radiobanda</h2>
+    <h2>Contacto por RadioBanda</h2>
     <form id="formulario" action="https://formspree.io/f/xdkgeorl" method="POST">
       <label for="nombre">Tu apodo:</label><br>
       <input type="text" id="nombre" name="nombre" required><br>
       <label for="mensaje">Mensaje:</label><br>
       <textarea id="mensaje" name="mensaje" rows="4" cols="30" required></textarea><br>
-      <button type="submit">Mandar señal</button>
+      <button type="submit">Mandar mensaje</button>
     </form>
-    <p id="confirmacion">📡 ¡Señal enviada! Te respondemos por la frecuencia del barrio.</p>
+    <p id="confirmacion">📡 ¡Mensaje enviado! .</p>
   </section>
 
   <script>
@@ -125,7 +126,7 @@
         form.reset();
         confirmacion.style.display = 'block';
       } else {
-        alert('Hubo un problema al mandar tu señal. Intenta de nuevo.');
+        alert('Hubo un problema al mandar tu mensaje. Intenta de nuevo.');
       }
     });
   </script>
