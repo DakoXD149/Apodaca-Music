@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Apodaca Music</title>
+  <style>
+    body {
+      background-color: black;
+      color: yellow;
+      font-family: "Courier New", monospace;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 2px 2px red;
+    }
+    .producto {
+      background-color: darkred;
+      border: 2px solid yellow;
+      padding: 15px;
+      margin: 10px;
+      max-width: 300px;
+    }
+    .producto img {
+      width: 100%;
+      border: 2px solid yellow;
+    }
+    .carrito {
+      background-color: #222;
+      border: 2px solid lime;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    button {
+      background-color: yellow;
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tienda Oficial Apodaca Music</h1>
+
+  <div class="producto">
+    <img src="https://github.com/DakoXD149/Apodaca-Music/blob/main/SG25.jpg?raw=true" alt="Cinta Said García">
+    <p><strong>Said García – Los Mejores Éxitos</strong></p>
+    <p>$120 MXN</p>
+    <button onclick="agregarAlCarrito('Cinta Said García', 120)">Agregar al carrito</button>
+  </div>
+
+  <div class="producto">
+    <img src="https://via.placeholder.com/300x300.png?text=Camiseta+Hecho+en+NL" alt="Camiseta">
+    <p><strong>Camiseta “Hecho en Nuevo León”</strong></p>
+    <p>$250 MXN</p>
+    <button onclick="agregarAlCarrito('Camiseta Hecho en Nuevo León', 250)">Agregar al carrito</button>
+  </div>
+
+  <div class="producto">
+    <img src="https://via.placeholder.com/300x300.png?text=Termo+30oz" alt="Termo">
+    <p><strong>Termo 30oz “This Is The North”</strong></p>
+    <p>$180 MXN</p>
+    <button onclick="agregarAlCarrito('Termo 30oz', 180)">Agregar al carrito</button>
+  </div>
+
+  <div class="carrito">
+    <h3>🛒 Carrito de Compras</h3>
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total: $<span id="total">0</span> MXN</strong></p>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="checkout.html">
+      <button style="background-color: lime; color: black;">Ir al Checkout</button>
+    </a>
+  </div>
+
+  <script>
+    let carrito = [];
+    let total = 0;
+
+    function agregarAlCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('lista-carrito');
+      lista.innerHTML = '';
+      total = 0;
+
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.producto} – $${item.precio} MXN`;
+        lista.appendChild(li);
+        total += item.precio;
+      });
+
+      document.getElementById('total').textContent = total;
+      localStorage.setItem('carritoApodaca', JSON.stringify(carrito));
+    }
+  </script>
+
+</body>
+</html>
