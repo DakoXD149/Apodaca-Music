@@ -29,7 +29,6 @@
       max-width: 90%;
       box-sizing: border-box;
     }
-
     .metodos-pago {
       display: flex;
       justify-content: center;
@@ -38,14 +37,12 @@
       margin: 30px auto;
       flex-wrap: wrap;
     }
-
     .metodos-pago img {
       height: 40px;
       object-fit: contain;
       background-color: transparent;
       filter: drop-shadow(1px 1px 2px black);
     }
-
     .formulario {
       background-color: #222;
       border: 1px solid yellow;
@@ -118,22 +115,27 @@
   <p><strong>Total: $<span id="total-checkout">0</span> MXN</strong></p>
 
   <div class="metodos-pago">
-  <img src="https://companieslogo.com/img/orig/V.D-e36aebe0.png?t=1720244494" alt="Visa">
-  <img src="https://1000marcas.net/wp-content/uploads/2019/12/logo-Mastercard.png" alt="MasterCard">
-  <img src="https://static-00.iconduck.com/assets.00/amex-icon-2048x1286-jssggdy1.png" alt="American Express">
-  <img src="https://static-00.iconduck.com/assets.00/applepay-icon-2048x842-s5plnamg.png" alt="Apple Pay">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Google_Pay_Acceptance_Mark.svg/640px-Google_Pay_Acceptance_Mark.svg.png" alt="Google Pay">
-</div>
-
-  <div class="formulario">
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" placeholder="tu@correo.com" required>
-
-    <label for="direccion">Dirección de envío:</label>
-    <input type="text" id="direccion" placeholder="Calle, número, colonia, ciudad" required>
+    <img src="https://companieslogo.com/img/orig/V.D-e36aebe0.png?t=1720244494" alt="Visa">
+    <img src="https://1000marcas.net/wp-content/uploads/2019/12/logo-Mastercard.png" alt="MasterCard">
+    <img src="https://static-00.iconduck.com/assets.00/amex-icon-2048x1286-jssggdy1.png" alt="American Express">
+    <img src="https://static-00.iconduck.com/assets.00/applepay-icon-2048x842-s5plnamg.png" alt="Apple Pay">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Google_Pay_Acceptance_Mark.svg/640px-Google_Pay_Acceptance_Mark.svg.png" alt="Google Pay">
   </div>
 
-  <button onclick="confirmarCompra()">Finalizar Compra</button>
+  <form class="formulario" action="https://formspree.io/f/xdkgeorl" method="POST" onsubmit="return enviarDatos(event)">
+    <label for="nombre">Nombre completo:</label>
+    <input type="text" name="nombre" id="nombre" placeholder="Tu nombre completo" required>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" name="email" id="email" placeholder="tu@correo.com" required>
+
+    <label for="direccion">Dirección de envío:</label>
+    <input type="text" name="direccion" id="direccion" placeholder="Calle, número, colonia, ciudad" required>
+
+    <input type="hidden" name="detalle" id="detalle">
+
+    <button type="submit">Finalizar Compra</button>
+  </form>
 
   <p id="mensaje" style="margin-top:20px; font-weight: bold; font-size:1em;"></p>
 
@@ -141,26 +143,36 @@
     const carrito = JSON.parse(localStorage.getItem('carritoApodaca')) || [];
     let total = 0;
     const lista = document.getElementById('lista-checkout');
+    const detalle = [];
 
     carrito.forEach(item => {
       const li = document.createElement('li');
       li.textContent = `${item.producto} – $${item.precio} MXN`;
       lista.appendChild(li);
       total += item.precio;
+      detalle.push(`${item.producto} – $${item.precio} MXN`);
     });
 
     document.getElementById('total-checkout').textContent = total;
 
-    function confirmarCompra() {
+    function enviarDatos(event) {
       const email = document.getElementById('email').value.trim();
       const dir = document.getElementById('direccion').value.trim();
-      if (!email || !dir) {
-        alert('Por favor, completa tu correo y dirección antes de finalizar la compra.');
-        return;
+      const nombre = document.getElementById('nombre').value.trim();
+      if (!email || !dir || !nombre) {
+        alert('Por favor, completa todos los campos antes de enviar.');
+        event.preventDefault();
+        return false;
       }
+
+      const resumen = detalle.join('\n') + `\nTotal: $${total} MXN`;
+      document.getElementById('detalle').value = resumen;
+
       document.getElementById('mensaje').textContent =
-        '✅ Su compra ha sido confirmada con éxito. Pronto le enviaremos la información de envío a ' + email + '.';
+        `✅ Su compra ha sido confirmada con éxito. Gracias, ${nombre}. Pronto le enviaremos la información de envío a ${email}.`;
+
       localStorage.removeItem('carritoApodaca');
+      return true;
     }
   </script>
 
